@@ -4,11 +4,13 @@ package views
 	import flash.events.Event;
 	import flash.text.TextField;
 	import flash.text.TextFieldAutoSize;
-	
-	public class CampoTextoView extends Sprite
+import flash.text.TextFormat;
+
+public class CampoTextoView extends Sprite
 	{
 		private var texto:String;
 		private var textField:TextField;
+        private var formato:TextFormat;
 		
 		public function CampoTextoView(_texto:String)
 		{
@@ -24,11 +26,17 @@ package views
 			
 			this.removeEventListener(Event.ADDED_TO_STAGE, init);
 			
-			textField = new TextField();
+
+            formato = new TextFormat();
+            formato.size = 18;
+
+
+            textField = new TextField();
 			textField.background = true;
 			textField.backgroundColor = 0xefefef;
 			textField.selectable = false;
 			textField.text = texto;
+            textField.setTextFormat(formato);
 			textField.autoSize = TextFieldAutoSize.LEFT;
 			
 			addChild(textField);
@@ -41,6 +49,7 @@ package views
 			textField.text = this.texto = message;
 			textField.x = (stage.stageWidth - textField.width) / 2;
 			textField.y = (stage.stageHeight - textField.height) / 2;
+            textField.setTextFormat(formato);
 		}
 		
 		
